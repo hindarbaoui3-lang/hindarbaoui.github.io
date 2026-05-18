@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hind Arbaoui — Market Research & Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #C4A59A;
+    --rose-light: #E8D5CE;
+    --rose-pale: #F5EDE9;
+    --beige: #F0E8DC;
+    --beige-deep: #D9C9B5;
+    --sage: #8A9E8C;
+    --sage-light: #B5C4B6;
+    --sage-pale: #E8EEE8;
+    --slate: #5C6670;
+    --slate-light: #8A96A0;
+    --slate-pale: #EEF0F2;
+    --text-dark: #2C2420;
+    --text-mid: #4A3F39;
+    --text-light: #7A6E68;
+    --text-pale: #A89E99;
+    --white: #FDFAF7;
+    --ff-serif: 'Cormorant Garamond', Georgia, serif;
+    --ff-sans: 'DM Sans', system-ui, sans-serif;
+    --nav-h: 72px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--ff-sans);
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--beige); }
+  ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 10px; }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5vw;
+    background: rgba(253, 250, 247, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(196, 165, 154, 0.2);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 30px rgba(44,36,32,0.07); }
+
+  .nav-logo {
+    font-family: var(--ff-serif);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--rose); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--rose);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--text-dark); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+  }
+  .nav-burger span {
+    display: block;
+    width: 24px; height: 1.5px;
+    background: var(--text-dark);
+    transition: all 0.3s;
+  }
+
+  /* ── MOBILE MENU ── */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--white);
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--ff-serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--rose); }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 7rem 5vw;
+  }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 28px; height: 1px;
+    background: var(--rose);
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  /* ── FADE-IN ANIMATION ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-in-delay-1 { transition-delay: 0.1s; }
+  .fade-in-delay-2 { transition-delay: 0.2s; }
+  .fade-in-delay-3 { transition-delay: 0.3s; }
+  .fade-in-delay-4 { transition-delay: 0.4s; }
+  .fade-in-delay-5 { transition-delay: 0.5s; }
+
+  /* ═══════════════════════════════════════
+     HERO
+  ═══════════════════════════════════════ */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding-top: calc(var(--nav-h) + 4rem);
+    padding-bottom: 5rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Background texture */
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 55vw; height: 55vw;
+    border-radius: 50%;
+    background: radial-gradient(circle at 60% 40%, var(--rose-pale) 0%, var(--beige) 40%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -5%;
+    width: 35vw; height: 35vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sage-pale) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-greeting {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-greeting::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--rose);
+  }
+
+  .hero-name {
+    font-family: var(--ff-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-name strong {
+    font-weight: 600;
+    display: block;
+  }
+
+  .hero-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--slate-light);
+    margin-bottom: 2rem;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--rose);
+    color: var(--white);
+    font-family: var(--ff-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover {
+    background: var(--text-mid);
+    transform: translateY(-1px);
+  }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: transparent;
+    color: var(--text-mid);
+    font-family: var(--ff-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--beige-deep);
+    border-radius: 2px;
+    transition: border-color 0.25s, color 0.25s, transform 0.2s;
+  }
+  .btn-outline:hover {
+    border-color: var(--rose);
+    color: var(--rose);
+    transform: translateY(-1px);
+  }
+
+  /* Hero visual side */
+  .hero-visual {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-card {
+    background: var(--white);
+    border: 1px solid rgba(196,165,154,0.3);
+    border-radius: 4px;
+    padding: 2.5rem;
+    max-width: 360px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(44,36,32,0.06);
+    position: relative;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 2rem;
+    width: 60px; height: 3px;
+    background: var(--rose);
+    border-radius: 0 0 2px 2px;
+  }
+
+  .hero-card-quote {
+    font-family: var(--ff-serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-card-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .stat-item {
+    background: var(--rose-pale);
+    padding: 1rem;
+    border-radius: 3px;
+  }
+  .stat-num {
+    font-family: var(--ff-serif);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--rose);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+  }
+
+  .hero-card-sectors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .sector-tag {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate);
+    background: var(--slate-pale);
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 5vw;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-pale);
+    z-index: 1;
+  }
+  .scroll-line {
+    width: 40px; height: 1px;
+    background: var(--beige-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--rose);
+    animation: scanline 2.5s ease-in-out infinite;
+  }
+  @keyframes scanline {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+  }
+
+  /* ═══════════════════════════════════════
+     EXPERIENCE
+  ═══════════════════════════════════════ */
+  #experience {
+    background: var(--beige);
+    position: relative;
+  }
+  #experience::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(196,165,154,0.08), transparent);
+    pointer-events: none;
+  }
+
+  .experience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .experience-intro {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+  .experience-intro p + p { margin-top: 1.2rem; }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 2rem;
+    padding-bottom: 3rem;
+    position: relative;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-dot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 16px;
+  }
+  .timeline-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--rose);
+    flex-shrink: 0;
+    margin-top: 5px;
+    border: 3px solid var(--beige);
+    box-shadow: 0 0 0 2px var(--rose);
+    position: relative;
+    z-index: 1;
+  }
+  .timeline-line {
+    width: 1px;
+    flex: 1;
+    background: linear-gradient(to bottom, var(--rose-light), var(--beige));
+    margin-top: 4px;
+  }
+  .timeline-item:last-child .timeline-line { display: none; }
+
+  .timeline-content {}
+  .timeline-period {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+  .timeline-role {
+    font-family: var(--ff-serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.2rem;
+  }
+  .timeline-org {
+    font-size: 0.82rem;
+    color: var(--sage);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+  .timeline-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .edu-block {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(253,250,247,0.7);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 3px 3px 0;
+  }
+  .edu-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .edu-item {
+    margin-bottom: 0.75rem;
+  }
+  .edu-item:last-child { margin-bottom: 0; }
+  .edu-degree {
+    font-family: var(--ff-serif);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.15rem;
+  }
+  .edu-school {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ═══════════════════════════════════════
+     SKILLS
+  ═══════════════════════════════════════ */
+  #skills {}
+
+  .skills-layout {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    padding: 2rem 1.75rem;
+    border: 1px solid rgba(196,165,154,0.25);
+    border-radius: 4px;
+    background: var(--white);
+    transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--rose);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .skill-card:hover {
+    box-shadow: 0 12px 40px rgba(44,36,32,0.08);
+    transform: translateY(-3px);
+    border-color: rgba(196,165,154,0.5);
+  }
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-card:nth-child(2)::before { background: var(--sage); }
+  .skill-card:nth-child(2):hover { border-color: rgba(138,158,140,0.5); }
+  .skill-card:nth-child(3)::before { background: var(--slate); }
+  .skill-card:nth-child(3):hover { border-color: rgba(92,102,112,0.4); }
+
+  .skill-icon {
+    width: 44px; height: 44px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.3rem;
+  }
+  .skill-icon.rose-bg { background: var(--rose-pale); }
+  .skill-icon.sage-bg { background: var(--sage-pale); }
+  .skill-icon.slate-bg { background: var(--slate-pale); }
+
+  .skill-card-title {
+    font-family: var(--ff-serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .skill-list li {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 300;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    line-height: 1.5;
+  }
+  .skill-list li::before {
+    content: '–';
+    color: var(--rose);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .skill-card:nth-child(2) .skill-list li::before { color: var(--sage); }
+  .skill-card:nth-child(3) .skill-list li::before { color: var(--slate-light); }
+
+  /* ═══════════════════════════════════════
+     PROJECTS (Coming Soon)
+  ═══════════════════════════════════════ */
+  #projects {
+    background: var(--rose-pale);
+    text-align: center;
+    padding: 6rem 5vw;
+    position: relative;
+    overflow: hidden;
+  }
+  #projects::before {
+    content: '"';
+    font-family: var(--ff-serif);
+    font-size: 28vw;
+    color: rgba(196,165,154,0.1);
+    position: absolute;
+    top: -5%;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .projects-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .coming-soon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(196,165,154,0.2);
+    border: 1px solid rgba(196,165,154,0.4);
+    color: var(--rose);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+  }
+  .coming-soon-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--rose);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .coming-soon-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+  .coming-soon-text {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  /* ═══════════════════════════════════════
+     TOOLS & EXPERTISE
+  ═══════════════════════════════════════ */
+  #tools {
+    background: var(--white);
+  }
+
+  .tools-grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .tool-item {
+    background: var(--white);
+    border: 1px solid rgba(196,165,154,0.2);
+    border-radius: 4px;
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .tool-item:hover {
+    box-shadow: 0 8px 30px rgba(44,36,32,0.07);
+    transform: translateY(-2px);
+  }
+
+  .tool-emoji {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .tool-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    margin-bottom: 0.3rem;
+  }
+  .tool-type {
+    font-size: 0.68rem;
+    color: var(--text-pale);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .tools-note {
+    margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--sage-pale);
+    border-radius: 3px;
+    border-left: 3px solid var(--sage);
+    font-size: 0.88rem;
+    color: var(--text-light);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .tools-note strong {
+    font-weight: 500;
+    color: var(--sage);
+  }
+
+  /* ═══════════════════════════════════════
+     LANGUAGES
+  ═══════════════════════════════════════ */
+  #languages {
+    background: var(--beige);
+    position: relative;
+    overflow: hidden;
+  }
+  #languages::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 40%;
+    height: 60%;
+    background: radial-gradient(ellipse at bottom right, rgba(138,158,140,0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .languages-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .lang-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .lang-card {
+    background: var(--white);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    border: 1px solid rgba(196,165,154,0.2);
+    transition: box-shadow 0.25s;
+  }
+  .lang-card:hover { box-shadow: 0 6px 24px rgba(44,36,32,0.06); }
+
+  .lang-flag {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+  .lang-info {}
+  .lang-name {
+    font-family: var(--ff-serif);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.15rem;
+  }
+  .lang-native-script {
+    font-size: 0.78rem;
+    color: var(--text-pale);
+    font-weight: 300;
+  }
+  .lang-level {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .level-native {
+    background: rgba(196,165,154,0.2);
+    color: var(--rose);
+    border: 1px solid rgba(196,165,154,0.4);
+  }
+  .level-fluent {
+    background: rgba(138,158,140,0.15);
+    color: var(--sage);
+    border: 1px solid rgba(138,158,140,0.35);
+  }
+
+  .lang-context {
+    position: relative;
+    z-index: 1;
+  }
+  .lang-quote {
+    font-family: var(--ff-serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-dark);
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+  }
+  .lang-quote span { color: var(--rose); }
+  .lang-desc {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* Interests strip */
+  .interests-strip {
+    margin-top: 3rem;
+    padding: 2rem 2.5rem;
+    background: var(--white);
+    border-radius: 4px;
+    border: 1px solid rgba(196,165,154,0.2);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .interests-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .interests-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .interest-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--beige);
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    font-weight: 400;
+    border: 1px solid var(--beige-deep);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .interest-chip:hover {
+    background: var(--rose-pale);
+    border-color: var(--rose-light);
+  }
+
+  /* ═══════════════════════════════════════
+     CONTACT
+  ═══════════════════════════════════════ */
+  #contact {
+    background: var(--text-dark);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  #contact::before {
+    content: '';
+    position: absolute;
+    top: -30%; left: -10%;
+    width: 60vw; height: 60vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,165,154,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  #contact::after {
+    content: '';
+    position: absolute;
+    bottom: -20%; right: -10%;
+    width: 40vw; height: 40vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(138,158,140,0.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .contact-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-left .section-label { color: rgba(196,165,154,0.8); }
+  .contact-left .section-label::before { background: rgba(196,165,154,0.6); }
+
+  .contact-title {
+    font-family: var(--ff-serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .contact-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+  .contact-body {
+    font-size: 0.95rem;
+    color: rgba(253,250,247,0.6);
+    line-height: 1.85;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(253,250,247,0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 300;
+    transition: color 0.2s;
+    group: true;
+  }
+  .contact-link:hover { color: var(--rose); }
+  .contact-link-icon {
+    width: 40px; height: 40px;
+    border-radius: 2px;
+    background: rgba(253,250,247,0.07);
+    border: 1px solid rgba(253,250,247,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover .contact-link-icon {
+    background: rgba(196,165,154,0.15);
+    border-color: rgba(196,165,154,0.4);
+  }
+
+  .contact-form-side {
+    background: rgba(253,250,247,0.04);
+    border: 1px solid rgba(253,250,247,0.08);
+    border-radius: 4px;
+    padding: 2.5rem;
+  }
+
+  .form-row {
+    margin-bottom: 1.25rem;
+  }
+  .form-label {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(253,250,247,0.5);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .form-input, .form-textarea {
+    width: 100%;
+    background: rgba(253,250,247,0.05);
+    border: 1px solid rgba(253,250,247,0.1);
+    border-radius: 2px;
+    padding: 0.85rem 1rem;
+    color: var(--white);
+    font-family: var(--ff-sans);
+    font-size: 0.9rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    resize: none;
+  }
+  .form-input::placeholder, .form-textarea::placeholder {
+    color: rgba(253,250,247,0.25);
+  }
+  .form-input:focus, .form-textarea:focus {
+    border-color: rgba(196,165,154,0.5);
+    background: rgba(253,250,247,0.07);
+  }
+  .form-textarea { height: 120px; }
+
+  .form-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--rose);
+    color: var(--white);
+    font-family: var(--ff-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover {
+    background: rgba(196,165,154,0.85);
+    transform: translateY(-1px);
+  }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(138,158,140,0.15);
+    border: 1px solid rgba(138,158,140,0.3);
+    border-radius: 2px;
+    color: var(--sage-light);
+    font-size: 0.88rem;
+    margin-top: 0.75rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1E1714;
+    padding: 2rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-name {
+    font-family: var(--ff-serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(253,250,247,0.5);
+    letter-spacing: 0.05em;
+  }
+  .footer-copy {
+    font-size: 0.72rem;
+    color: rgba(253,250,247,0.3);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+  .footer-back {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    color: rgba(196,165,154,0.6);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-back:hover { color: var(--rose); }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE
+  ═══════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .skills-layout { grid-template-columns: repeat(2, 1fr); }
+    .tools-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    section { padding: 5rem 6vw; }
+
+    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+
+    #hero {
+      grid-template-columns: 1fr;
+      padding-top: calc(var(--nav-h) + 2rem);
+      padding-bottom: 4rem;
+      gap: 3rem;
+    }
+    .hero-visual { order: -1; }
+    .hero-card { max-width: 100%; }
+    .scroll-hint { display: none; }
+
+    .experience-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .skills-layout { grid-template-columns: 1fr; }
+    .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    .languages-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  @media (max-width: 480px) {
+    .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-card-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════ NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Hind <span>Arbaoui</span></a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#languages">Languages</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-burger" id="burger" aria-label="Menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#experience" class="mobile-link">Experience</a>
+  <a href="#skills" class="mobile-link">Skills</a>
+  <a href="#projects" class="mobile-link">Projects</a>
+  <a href="#tools" class="mobile-link">Tools</a>
+  <a href="#languages" class="mobile-link">Languages</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+</div>
+
+<!-- ══════════════════════════════════════ HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <p class="hero-greeting fade-in">Welcome</p>
+    <h1 class="hero-name fade-in fade-in-delay-1">
+      Hind<br>
+      <strong>Arbaoui</strong>
+    </h1>
+    <p class="hero-title fade-in fade-in-delay-2">Market Research Specialist · Strategic Insights</p>
+    <p class="hero-bio fade-in fade-in-delay-3">
+      I turn complex consumer behaviors into clear, actionable insights. With a background spanning quantitative methods and a deeper specialization in qualitative research, I work at the intersection of data, psychology, and strategy — helping organizations truly understand the people they serve.
+    </p>
+    <div class="hero-cta fade-in fade-in-delay-4">
+      <a href="#experience" class="btn-primary">My Journey</a>
+      <a href="#contact" class="btn-outline">Let's Connect</a>
+    </div>
+  </div>
+
+  <div class="hero-visual fade-in fade-in-delay-2">
+    <div class="hero-card">
+      <p class="hero-card-quote">"Research is the art of listening to what people don't say out loud."</p>
+      <div class="hero-card-stats">
+        <div class="stat-item">
+          <div class="stat-num">BAC+5</div>
+          <div class="stat-label">ENCG Casablanca</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Languages fluently spoken</div>
+        </div>
+      </div>
+      <div class="hero-card-sectors">
+        <span class="sector-tag">FMCG</span>
+        <span class="sector-tag">Banking</span>
+        <span class="sector-tag">Public Services</span>
+        <span class="sector-tag">Qualitative Research</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span class="scroll-line"></span>
+    Scroll
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ EXPERIENCE -->
+<section id="experience">
+  <p class="section-label fade-in">My Journey</p>
+  <h2 class="section-title fade-in fade-in-delay-1">Experience &amp; <em>Background</em></h2>
+
+  <div class="experience-grid">
+    <div class="fade-in fade-in-delay-2">
+      <div class="experience-intro">
+        <p>My path into market research wasn't accidental — it grew from a genuine curiosity about people: how they think, what they need, and how they make decisions.</p>
+        <p>I started in quantitative research, building a strong analytical foundation. Over time, I gravitated toward qualitative methods, where I could dig beneath the numbers and uncover the human stories behind the data.</p>
+        <p>Today, I specialize in qualitative research while remaining fluent in quantitative approaches — a combination that makes my insights both deep and defensible.</p>
+      </div>
+      <div class="edu-block fade-in fade-in-delay-3">
+        <p class="edu-label">Education</p>
+        <div class="edu-item">
+          <p class="edu-degree">Master's in Marketing &amp; Commercial Actions</p>
+          <p class="edu-school">ENCG Casablanca · BAC+5</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">Bachelor's in English Studies</p>
+          <p class="edu-school">BAC+3</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline fade-in fade-in-delay-3">
+      <div class="timeline-item">
+        <div class="timeline-dot-col">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <p class="timeline-period">Specialization</p>
+          <p class="timeline-role">Qualitative Research Specialist</p>
+          <p class="timeline-org">Market Research · Insights Delivery</p>
+          <p class="timeline-desc">In-depth focus on qualitative methodologies — focus groups, in-depth interviews, ethnographic observation. Designing research frameworks that capture nuance across FMCG, banking, and public service sectors. Delivering strategic reports and presentations that bridge consumer truth and business decisions.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot-col">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <p class="timeline-period">Foundation</p>
+          <p class="timeline-role">Quantitative Research Analyst</p>
+          <p class="timeline-org">Survey Design · Statistical Analysis</p>
+          <p class="timeline-desc">Built solid foundations in survey methodology, data collection, and statistical analysis. Worked on large-scale consumer studies and satisfaction trackers, developing the analytical rigor that now informs qualitative fieldwork and insight writing.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot-col">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <p class="timeline-period">Sectors</p>
+          <p class="timeline-role">Cross-Industry Expertise</p>
+          <p class="timeline-org">FMCG · Banking · Public Services</p>
+          <p class="timeline-desc">Navigating very different consumer universes — from FMCG's fast-moving brand landscape, to the trust-heavy world of banking, to the complexity of public services — has sharpened my ability to adapt methods and communication style to each context.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SKILLS -->
+<section id="skills">
+  <p class="section-label fade-in">What I Bring</p>
+  <h2 class="section-title fade-in fade-in-delay-1">Skills &amp; <em>Expertise</em></h2>
+
+  <div class="skills-layout">
+    <div class="skill-card fade-in fade-in-delay-2">
+      <div class="skill-icon rose-bg">🔍</div>
+      <h3 class="skill-card-title">Research & Insights</h3>
+      <ul class="skill-list">
+        <li>Qualitative research design (focus groups, IDIs, observations)</li>
+        <li>Quantitative surveys and trackers</li>
+        <li>Consumer behavior analysis</li>
+        <li>Insight synthesis and strategic recommendations</li>
+        <li>Moderating and facilitation</li>
+      </ul>
+    </div>
+
+    <div class="skill-card fade-in fade-in-delay-3">
+      <div class="skill-icon sage-bg">📊</div>
+      <h3 class="skill-card-title">Analysis & Communication</h3>
+      <ul class="skill-list">
+        <li>Data analysis and interpretation</li>
+        <li>Report writing and storytelling</li>
+        <li>Professional presentations (executive-ready)</li>
+        <li>Cross-functional insight delivery</li>
+        <li>Strategic framing of complex findings</li>
+      </ul>
+    </div>
+
+    <div class="skill-card fade-in fade-in-delay-4">
+      <div class="skill-icon slate-bg">🎨</div>
+      <h3 class="skill-card-title">Creative & Digital Tools</h3>
+      <ul class="skill-list">
+        <li>Microsoft Office (advanced: Word, Excel, PowerPoint)</li>
+        <li>Canva — visual communication design</li>
+        <li>Adobe Illustrator — graphic elements</li>
+        <li>AI productivity tools for research efficiency</li>
+        <li>Visual storytelling and data presentation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ PROJECTS -->
+<section id="projects">
+  <div class="projects-inner">
+    <div class="coming-soon-badge fade-in">In Progress</div>
+    <h2 class="coming-soon-title fade-in fade-in-delay-1">Projects &amp; Case Studies<br><em>Coming Soon</em></h2>
+    <p class="coming-soon-text fade-in fade-in-delay-2">
+      I'm currently curating a selection of research projects and case studies to share here. Real work, real impact — no fictional placeholders. Check back soon, or reach out directly if you'd like to discuss my research experience in detail.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ TOOLS -->
+<section id="tools">
+  <p class="section-label fade-in">My Toolkit</p>
+  <h2 class="section-title fade-in fade-in-delay-1">Tools &amp; <em>Platforms</em></h2>
+
+  <div class="tools-grid">
+    <div class="tool-item fade-in fade-in-delay-1">
+      <span class="tool-emoji">📝</span>
+      <p class="tool-name">Microsoft Word</p>
+      <p class="tool-type">Reports & Docs</p>
+    </div>
+    <div class="tool-item fade-in fade-in-delay-2">
+      <span class="tool-emoji">📈</span>
+      <p class="tool-name">Microsoft Excel</p>
+      <p class="tool-type">Data & Analysis</p>
+    </div>
+    <div class="tool-item fade-in fade-in-delay-2">
+      <span class="tool-emoji">🎯</span>
+      <p class="tool-name">PowerPoint</p>
+      <p class="tool-type">Presentations</p>
+    </div>
+    <div class="tool-item fade-in fade-in-delay-3">
+      <span class="tool-emoji">🎨</span>
+      <p class="tool-name">Canva</p>
+      <p class="tool-type">Visual Design</p>
+    </div>
+    <div class="tool-item fade-in fade-in-delay-3">
+      <span class="tool-emoji">✏️</span>
+      <p class="tool-name">Adobe Illustrator</p>
+      <p class="tool-type">Graphics & Visuals</p>
+    </div>
+    <div class="tool-item fade-in fade-in-delay-4">
+      <span class="tool-emoji">🤖</span>
+      <p class="tool-name">AI Tools</p>
+      <p class="tool-type">Productivity & Analysis</p>
+    </div>
+    <div class="tool-item fade-in fade-in-delay-4">
+      <span class="tool-emoji">🔎</span>
+      <p class="tool-name">Survey Platforms</p>
+      <p class="tool-type">Data Collection</p>
+    </div>
+    <div class="tool-item fade-in fade-in-delay-5">
+      <span class="tool-emoji">📋</span>
+      <p class="tool-name">Qualitative Tools</p>
+      <p class="tool-type">Research Design</p>
+    </div>
+  </div>
+
+  <div class="tools-note fade-in fade-in-delay-3">
+    <strong>On AI tools:</strong> I actively use AI to enhance research productivity — from synthesizing secondary data, to assisting with thematic analysis and structuring insights — while keeping critical judgment and human interpretation at the center of my work.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ LANGUAGES -->
+<section id="languages">
+  <p class="section-label fade-in">Communication</p>
+  <h2 class="section-title fade-in fade-in-delay-1">Languages &amp; <em>Culture</em></h2>
+
+  <div class="languages-layout">
+    <div class="lang-cards fade-in fade-in-delay-2">
+      <div class="lang-card">
+        <span class="lang-flag">🇲🇦</span>
+        <div class="lang-info">
+          <p class="lang-name">Arabic</p>
+          <p class="lang-native-script">اللغة العربية</p>
+        </div>
+        <span class="lang-level level-native">Native</span>
+      </div>
+      <div class="lang-card">
+        <span class="lang-flag">🇫🇷</span>
+        <div class="lang-info">
+          <p class="lang-name">French</p>
+          <p class="lang-native-script">Français</p>
+        </div>
+        <span class="lang-level level-fluent">Fluent</span>
+      </div>
+      <div class="lang-card">
+        <span class="lang-flag">🇬🇧</span>
+        <div class="lang-info">
+          <p class="lang-name">English</p>
+          <p class="lang-native-script">English</p>
+        </div>
+        <span class="lang-level level-fluent">Fluent</span>
+      </div>
+    </div>
+
+    <div class="lang-context fade-in fade-in-delay-3">
+      <p class="lang-quote">Language is more than communication — it's <span>access to how people think.</span></p>
+      <p class="lang-desc">Being trilingual has shaped how I approach research. I can conduct and moderate sessions in Arabic, French, or English, and reach respondents in the language they feel most natural in — which is exactly when people reveal the most. My background in English Studies also sharpened my sensitivity to meaning, nuance, and tone in everything I write and present.</p>
+
+      <div class="interests-strip">
+        <span class="interests-label">Also Passionate About</span>
+        <div class="interests-items">
+          <span class="interest-chip">🎵 Music & Solfège</span>
+          <span class="interest-chip">🎨 Painting</span>
+          <span class="interest-chip">✍️ Arabic Calligraphy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <p class="section-label fade-in">Get in Touch</p>
+      <h2 class="contact-title fade-in fade-in-delay-1">Let's work<br><em>together</em></h2>
+      <p class="contact-body fade-in fade-in-delay-2">
+        Whether you're looking for a research partner, need qualitative insight on a project, or simply want to connect — I'd love to hear from you. I'm based in Casablanca and open to collaborations both locally and internationally.
+      </p>
+      <div class="contact-links fade-in fade-in-delay-3">
+        <a href="mailto:hind.arbaoui@email.com" class="contact-link">
+          <span class="contact-link-icon">✉️</span>
+          hind.arbaoui@email.com
+        </a>
+        <a href="https://linkedin.com/in/hindarbaoui" class="contact-link" target="_blank" rel="noopener">
+          <span class="contact-link-icon">💼</span>
+          linkedin.com/in/hindarbaoui
+        </a>
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">📍</span>
+          Casablanca, Morocco
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form-side fade-in fade-in-delay-2">
+      <div class="form-row">
+        <label class="form-label" for="fname">Name</label>
+        <input class="form-input" type="text" id="fname" placeholder="Your name">
+      </div>
+      <div class="form-row">
+        <label class="form-label" for="femail">Email</label>
+        <input class="form-input" type="email" id="femail" placeholder="your@email.com">
+      </div>
+      <div class="form-row">
+        <label class="form-label" for="fsubject">Subject</label>
+        <input class="form-input" type="text" id="fsubject" placeholder="Research collaboration, opportunity...">
+      </div>
+      <div class="form-row">
+        <label class="form-label" for="fmessage">Message</label>
+        <textarea class="form-textarea" id="fmessage" placeholder="Tell me about your project or what you have in mind..."></textarea>
+      </div>
+      <button class="form-submit" id="formSubmit">Send Message</button>
+      <div class="form-success" id="formSuccess">
+        ✓ &nbsp; Thank you! Your message has been sent. I'll be in touch soon.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ FOOTER -->
+<footer>
+  <span class="footer-name">Hind Arbaoui</span>
+  <span class="footer-copy">© 2025 · Market Research & Marketing</span>
+  <a href="#hero" class="footer-back">↑ Back to top</a>
+</footer>
+
+<!-- ══════════════════════════════════════ SCRIPTS -->
+<script>
+  // ── NAVBAR scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // ── BURGER MENU
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  burger.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ── FADE-IN ON SCROLL
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  fadeEls.forEach(el => observer.observe(el));
+
+  // ── FORM SUBMIT (demo)
+  document.getElementById('formSubmit').addEventListener('click', () => {
+    const name = document.getElementById('fname').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    if (!name || !email) {
+      document.getElementById('fname').style.borderColor = name ? '' : 'rgba(196,165,154,0.8)';
+      document.getElementById('femail').style.borderColor = email ? '' : 'rgba(196,165,154,0.8)';
+      return;
+    }
+    document.getElementById('formSuccess').style.display = 'block';
+    document.getElementById('formSubmit').style.display = 'none';
+  });
+
+  // ── Active nav link highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--text-dark)' : '';
+    });
+  });
+</script>
+</body>
+</html>
